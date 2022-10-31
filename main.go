@@ -20,7 +20,7 @@ var customers = map[string]models.Customer{
 	},
 	"2": {
 		ID:        2,
-		Name:      "karokomako",
+		Name:      "panda",
 		Role:      "writer",
 		Email:     "writer@sonny.com",
 		Phone:     "5012346789",
@@ -28,7 +28,7 @@ var customers = map[string]models.Customer{
 	},
 	"3": {
 		ID:        3,
-		Name:      "churikua",
+		Name:      "bear",
 		Role:      "builder",
 		Email:     "builder@sonny.com",
 		Phone:     "3012456789",
