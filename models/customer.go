@@ -1,7 +1,7 @@
 package models
 
 type Customer struct {
-	ID        int    `json:"id,omitempty"`
+	ID        uint32 `json:"id,omitempty"`
 	Name      string `json:"name,omitempty"`
 	Role      string `json:"role,omitempty"`
 	Email     string `json:"email,omitempty"`
