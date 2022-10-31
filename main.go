@@ -39,7 +39,7 @@ var customers = map[string]models.Customer{
 	},
 }
 
-func GetHome(w http.ResponseWriter, r *http.Request) {
+func getHome(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	http.ServeFile(w, r, "./templates/home.gohtml")
 }
@@ -87,7 +87,7 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", GetHome).Methods("GET")
+	r.HandleFunc("/", getHome).Methods("GET")
 	r.HandleFunc("/customers", getCustomers).Methods("GET")
 	r.HandleFunc("/customers/{id}", getCustomer).Methods("GET")
 	r.HandleFunc("/customers", addCustomer).Methods("POST")
