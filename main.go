@@ -84,6 +84,21 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(customers[strId])
 }
 
+func deleteCustomer(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	userId := mux.Vars(r)["id"]
+
+	if _, ok := customers[userId]; ok {
+		delete(customers, userId)
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(customers)
+	} else {
+		w.WriteHeader(http.StatusNotFound)
+		json.NewEncoder(w).Encode(customers)
+	}
+}
+
 func main() {
 	r := mux.NewRouter()
 
@@ -91,6 +106,7 @@ func main() {
 	r.HandleFunc("/customers", getCustomers).Methods("GET")
 	r.HandleFunc("/customers/{id}", getCustomer).Methods("GET")
 	r.HandleFunc("/customers", addCustomer).Methods("POST")
+	r.HandleFunc("/customers/{id}", deleteCustomer).Methods("DELETE")
 	fmt.Println("Starting server on localhost:3000...")
 	http.ListenAndServe(":3000", r)
 }
