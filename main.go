@@ -41,7 +41,7 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "./templates/home.gohtml")
 }
 
-func GetCustomerWithID(w http.ResponseWriter, r *http.Request) {
+func getCustomer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	id := mux.Vars(r)["id"]
@@ -55,7 +55,7 @@ func GetCustomerWithID(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func GetCustomers(w http.ResponseWriter, r *http.Request) {
+func getCustomers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(customers)
@@ -65,8 +65,8 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", GetHome).Methods("GET")
-	r.HandleFunc("/customers/{id}", GetCustomerWithID).Methods("GET")
-	r.HandleFunc("/customers", GetCustomers).Methods("GET")
+	r.HandleFunc("/customers/{id}", getCustomer).Methods("GET")
+	r.HandleFunc("/customers", getCustomers).Methods("GET")
 	fmt.Println("Starting server on localhost:3000...")
 	http.ListenAndServe(":3000", r)
 }
