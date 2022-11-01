@@ -65,7 +65,7 @@ func getCustomer(w http.ResponseWriter, r *http.Request) {
 }
 
 func addCustomer(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "applicaiton/json")
+	w.Header().Set("Content-Type", "application/json")
 
 	uuid := uuid.New()
 	id := uuid.ID()
@@ -81,6 +81,7 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 	}
 	customers[strId] = customer
 
+	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(customers[strId])
 }
 
