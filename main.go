@@ -77,7 +77,7 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 
 	body, _ := ioutil.ReadAll(r.Body)
 	if err := json.Unmarshal(body, &customer); err != nil {
-		fmt.Println("Cannot unmarshal post request")
+		http.Error(w, "Cannot unmarshal post request", http.StatusNotFound)
 	}
 	customers[strId] = customer
 
@@ -94,13 +94,14 @@ func updateCustomer(w http.ResponseWriter, r *http.Request) {
 	if _, ok := customers[userId]; ok {
 		body, _ := ioutil.ReadAll(r.Body)
 		if err := json.Unmarshal(body, &customer); err != nil {
-			fmt.Println("Cannot unmarshal post request")
+			http.Error(w, "Cannot unmarshal put request", http.StatusNotFound)
+		} else {
+			customerID, _ := strconv.ParseUint(userId, 10, 32)
+			customer.ID = uint32(customerID)
+			customers[userId] = customer
+			w.WriteHeader(http.StatusOK)
+			json.NewEncoder(w).Encode(customer)
 		}
-		customerID, _ := strconv.ParseUint(userId, 10, 32)
-		customer.ID = uint32(customerID)
-		customers[userId] = customer
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(customer)
 	} else {
 		w.WriteHeader(http.StatusNotFound)
 		json.NewEncoder(w).Encode(nil)
