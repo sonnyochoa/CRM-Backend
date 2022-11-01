@@ -1,0 +1,26 @@
+{
+	"1": {
+		"ID":        1,
+		"Name":      "sonny",
+		"Role":      "admin",
+		"Email":     "admin@sonny.com",
+		"Phone":     "1234567890",
+		"Contacted": false
+	},
+	"2": {
+		"ID":        2,
+		"Name":      "panda",
+		"Role":      "writer",
+		"Email":     "writer@sonny.com",
+		"Phone":     "5012346789",
+		"Contacted": false
+	},
+	"3": {
+		"ID":        3,
+		"Name":      "bear",
+		"Role":      "builder",
+		"Email":     "builder@sonny.com",
+		"Phone":     "3012456789",
+		"Contacted": true
+	}
+}
