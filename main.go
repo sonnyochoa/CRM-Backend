@@ -84,6 +84,28 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(customers[strId])
 }
 
+func updateCustomer(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var customer models.Customer
+	userId := mux.Vars(r)["id"]
+
+	if _, ok := customers[userId]; ok {
+		body, _ := ioutil.ReadAll(r.Body)
+		if err := json.Unmarshal(body, &customer); err != nil {
+			fmt.Println("Cannot unmarshal post request")
+		}
+		customerID, _ := strconv.ParseUint(userId, 10, 32)
+		customer.ID = uint32(customerID)
+		customers[userId] = customer
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(customer)
+	} else {
+		w.WriteHeader(http.StatusNotFound)
+		json.NewEncoder(w).Encode(customer)
+	}
+}
+
 func deleteCustomer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -106,6 +128,7 @@ func main() {
 	r.HandleFunc("/customers", getCustomers).Methods("GET")
 	r.HandleFunc("/customers/{id}", getCustomer).Methods("GET")
 	r.HandleFunc("/customers", addCustomer).Methods("POST")
+	r.HandleFunc("/customers/{id}", updateCustomer).Methods("PUT")
 	r.HandleFunc("/customers/{id}", deleteCustomer).Methods("DELETE")
 	fmt.Println("Starting server on localhost:3000...")
 	http.ListenAndServe(":3000", r)
