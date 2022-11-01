@@ -60,7 +60,7 @@ func getCustomer(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(customers[id])
 	} else {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode("{User does not exist}")
+		json.NewEncoder(w).Encode(nil)
 	}
 }
 
@@ -102,7 +102,7 @@ func updateCustomer(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(customer)
 	} else {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(customer)
+		json.NewEncoder(w).Encode(nil)
 	}
 }
 
@@ -117,7 +117,7 @@ func deleteCustomer(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(customers)
 	} else {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(customers)
+		json.NewEncoder(w).Encode(nil)
 	}
 }
 
