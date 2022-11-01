@@ -39,17 +39,21 @@ var customers = map[string]models.Customer{
 	},
 }
 
+// getHome serves the home page from a static file.
 func getHome(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	http.ServeFile(w, r, "./templates/home.gohtml")
 }
 
+// getCustomers returns all customers in JSON format.
 func getCustomers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(customers)
 }
 
+// getCustomer returns a customer object in JSON format from the passed in user ID.
+// If the user ID is not found, it returns nil and StatusNotFound.
 func getCustomer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -64,6 +68,9 @@ func getCustomer(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// addCustomer creates a new customer with a unique ID based on the user data submitted.
+// If it's unable to umarshal the post request, it logs an error and returns
+// StatusBadRequest.
 func addCustomer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -77,7 +84,7 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 
 	body, _ := ioutil.ReadAll(r.Body)
 	if err := json.Unmarshal(body, &customer); err != nil {
-		http.Error(w, "Cannot unmarshal post request", http.StatusNotFound)
+		http.Error(w, "Cannot unmarshal post request", http.StatusBadRequest)
 	}
 	customers[strId] = customer
 
@@ -85,6 +92,9 @@ func addCustomer(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(customers[strId])
 }
 
+// updateCustomer updates the customer based on a user ID. It receives a JSON object
+// with the fields that need updating. It returns nil and StatusNotFound if the user ID
+// does not exist.
 func updateCustomer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -108,6 +118,8 @@ func updateCustomer(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// deleteCustomer deletes a customer based on a user ID.  It returns nil and
+// StatusNotFound if the user ID does not exist.
 func deleteCustomer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
