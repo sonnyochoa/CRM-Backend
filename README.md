@@ -48,21 +48,21 @@ go run main.go
         "id": 1,
         "name": "sonny",
         "role": "admin",
-        "email": "admin@sonny.com",
+        "email": "admin@test.com",
         "phone": "1234567890"
     },
     "2": {
         "id": 2,
         "name": "panda",
         "role": "writer",
-        "email": "writer@sonny.com",
-        "phone": "5012346789"
+        "email": "writer@test.com",
+        "phone": "5552346789"
     },
     "3": {
         "id": 3,
         "name": "bear",
         "role": "builder",
-        "email": "builder@sonny.com",
+        "email": "builder@test.com",
         "phone": "3012456789",
         "contacted": true
     }
@@ -77,7 +77,7 @@ go run main.go
     "id": 1,
     "name": "sonny",
     "role": "admin",
-    "email": "admin@sonny.com",
+    "email": "admin@test.com",
     "phone": "1234567890"
 }
 ```
@@ -114,7 +114,7 @@ go run main.go
     "name": "SONNY",
     "role": "SUPER ADMIN",
     "email": "SUPEADMIN@test.com",
-    "phone": "9097061372",
+    "phone": "5555555555",
     "contacted": true
 }
 ```
@@ -125,7 +125,7 @@ go run main.go
     "name": "SONNY",
     "role": "SUPER ADMIN",
     "email": "SUPEADMIN@test.com",
-    "phone": "9097061372",
+    "phone": "5555555555",
     "contacted": true
 }
 ```
@@ -140,15 +140,15 @@ go run main.go
         "name": "SONNY",
         "role": "SUPER ADMIN",
         "email": "SUPEADMIN@test.com",
-        "phone": "9097061372",
+        "phone": "5555555555",
         "contacted": true
     },
     "3": {
         "id": 3,
         "name": "bear",
         "role": "builder",
-        "email": "builder@sonny.com",
-        "phone": "3012456789",
+        "email": "builder@test.com",
+        "phone": "5552456789",
         "contacted": true
     }
 }
