@@ -25,7 +25,7 @@ Inside the project directory run:
 go run main.go
 ```
 
-## Request Data Format
+## Request Data Schema
 ```json
 {
     "name": "new customer",
