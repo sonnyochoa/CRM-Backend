@@ -25,6 +25,18 @@ Inside the project directory run:
 go run main.go
 ```
 
+## Request Data Format
+```json
+{
+    "name": "new customer",
+    "role": "test role",
+    "email": "newcustomer@test.com",
+    "phone": "5551234567",
+    "contacted": true
+}
+```
+**DO NOT INCLUDE A USER ID. IT WILL BE AUTO GENERATED**
+
 ## Examples
 
 ### Getting all customers: `/customers`    **GET**
