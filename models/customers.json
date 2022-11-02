@@ -1,26 +1,26 @@
 {
 	"1": {
-		"ID":        1,
-		"Name":      "sonny",
-		"Role":      "admin",
-		"Email":     "admin@sonny.com",
-		"Phone":     "1234567890",
-		"Contacted": false
+		"id":        1,
+		"name":      "sonny",
+		"role":      "admin",
+		"email":     "admin@sonny.com",
+		"phone":     "1234567890",
+		"contacted": false
 	},
 	"2": {
-		"ID":        2,
-		"Name":      "panda",
-		"Role":      "writer",
-		"Email":     "writer@sonny.com",
-		"Phone":     "5012346789",
-		"Contacted": false
+		"id":        2,
+		"name":      "panda",
+		"role":      "writer",
+		"email":     "writer@sonny.com",
+		"phone":     "5012346789",
+		"contacted": false
 	},
 	"3": {
-		"ID":        3,
-		"Name":      "bear",
-		"Role":      "builder",
-		"Email":     "builder@sonny.com",
-		"Phone":     "3012456789",
-		"Contacted": true
+		"id":        3,
+		"name":      "bear",
+		"role":      "builder",
+		"email":     "builder@sonny.com",
+		"phone":     "3012456789",
+		"contacted": true
 	}
 }
